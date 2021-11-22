@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>News</title>
+    <script src="jquery-3.6.0.js"></script>
+    <script>
+           
+        $(document).ready(function () {
+            var modal = document.getElementById('myModal');
+      
+            $(".open").click(function() {
+                $("form").css("display","block");
+                $("body").css("background-color","#898B8C")
+            });
+      
+            $(".close").click(function() {
+                $("form").css("display","none");
+                $("body").css("background-color","#ffff")
+            });
+            fetch('https://gnews.io/api/v4/top-headlines?&token=7cdc59a05274f6f373ddbbec3fc6df37')
+            .then(a => a.json())
+            .then(response => {
+                for (var i = 0; i < response.articles.length; i++) {
+                    document.getElementById("output").innerHTML += 
+                    "<div style='padding-top: 5px'><hr><img style='float:left; width: 30%; height: auto;'src='"+response.articles[i].image+"' loading='lazy'><a target='_blank' href='"+response.articles[i].url+"'>"+response.articles[i].title+"</a><p>"+response.articles[i].publishedAt+"<br><br>"+response.articles[i].description+"</p></div>"
+                };
+            })
+
+            $("#btn1").click(function () {
+                const token = '7cdc59a05274f6f373ddbbec3fc6df37'
+               
+                let topic = $(".input").val()
+                
+                console.log(topic)
+
+                let url = `https://gnews.io/api/v4/search?q=${topic}&token=${token}`
+
+                document.getElementById("output").innerHTML =""
+
+                 fetch(url)
+                 .then(a => a.json())
+                 .then(response=>{
+                    for (var i = 0; i < response.articles.length; i++) {
+                    document.getElementById("output").innerHTML += 
+                    "<div style='margin-top: 40px'><img style='float:left; width: 30%; height: auto;'src='"+response.articles[i].image+"'><a target='_blank' href='"+response.articles[i].url+"'>"+response.articles[i].title+"</a><p>"+response.articles[i].publishedAt+"<br><br>"+response.articles[i].description+"</p></div>"
+                    };
+                })        
+            })
+        })
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h2>My News</h2>
+            <span class="open"><ion-icon name="search-circle-outline"></ion-icon><span>
+        </div>
+        <form action="" class="search" id="active">
+            <span class="close"><ion-icon name="close-circle-outline"></ion-icon></span>
+            <div class="fomrgroup">
+                <input type="text" class="input">
+                <button type="button" id="btn1">Search</button>
+            </div>
+        </form>
+    </header>
+    <div id="output"></div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+
+.container {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: chocolate;
+    height: 60px;
+}
+
+ion-icon
+{
+    height: 30px;
+    width: 30px;
+}
+
+h2 
+{
+    font-size: 50px;
+}
+
+form {
+    display: none;
+    box-sizing: border-box;
+    width: 60%;
+    height: 90px;
+    background-color:#ffff;
+    position: relative;
+    margin: auto;
+    top: 70px;
+}
+
+.fomrgroup {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    position: relative;
+    top: 25px;
+}
+
+.fomrgroup input{
+    width: 70%;
+    height: 25px;
+    margin-right: 20px;
+    line-height: 50px;
+}
+.close 
+{
+    float: right;
+    top: -30px;
+    right: 20px;
+}
+.close:hover,
+.close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#output
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 30px;
+    font-size: 25px;
+}
+
+#output img 
+{
+    display: block;
+    margin-right: 80px;
+}
+
+#output a 
+{   
+    font-size: 35px;
+    text-decoration: none;
+}
+
